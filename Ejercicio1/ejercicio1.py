@@ -1,22 +1,5 @@
 import csv, re
-
-class email:                        #Item a
-    __idCuenta = ""
-    __dominio = ""
-    __tipoDominio = ""
-    __contrasena = ""
-    def __init__(self, idCuenta, dominio, tipoDominio, contrasena):
-        self.__idCuenta = idCuenta
-        self.__dominio = dominio
-        self.__tipoDominio = tipoDominio
-        self.__contrasena = contrasena
-    def retornaEmail(self):         #Item b
-        return self.__idCuenta +'@'+self.__dominio+'.'+self.__tipoDominio
-    def getDominio(self):           #Item c
-        return self.__dominio
-    def modificarContra(self, contrasena):
-        self.__contrasena = contrasena
-        return self.__contrasena
+from email import email 
 
 def crearCuenta(correos = "" , contraseña = ""):
 	datos = correos.split("@")
@@ -24,7 +7,7 @@ def crearCuenta(correos = "" , contraseña = ""):
 	return email(datos[0], dom[0], dom[1], contraseña)
     
 if __name__ == '__main__':
-    """nombre = input("Ingrese su nombre: ")
+    nombre = input("Ingrese su nombre: ")
     mail = input("Ingrese su email: ")
     email.__contrasena = input("Ingrese la contraseña: ")
     print(f"contraseña actual: "+email.__contrasena)
@@ -41,13 +24,13 @@ if __name__ == '__main__':
     email.__idCuenta = datos[0]
     email.__dominio = dominio[0]
     email.__tipoDominio = dominio[1]
-    print(f"IdCuenta: "+email.__idCuenta+" - Dominio: "+email.__dominio+" - Tipo: "+email.__tipoDominio)"""
+    print(f"IdCuenta: "+email.__idCuenta+" - Dominio: "+email.__dominio+" - Tipo: "+email.__tipoDominio)
     
     #PUNTO 4
-    archivo = open('correo.csv')
+    archivo = open('correos.csv')
     reader = csv.reader(archivo, delimiter=';')
     correos = []
-    email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$'
+    email_regex = r'^[a-zA-Z0-9._%+-.]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$'
     for fila in reader:
         if re.search(email_regex,fila[0]):
             print(f"correo electronico valido: {fila[0]}")

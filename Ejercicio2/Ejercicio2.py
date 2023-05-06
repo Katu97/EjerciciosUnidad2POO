@@ -1,24 +1,67 @@
 import csv
-from ViajeroF import ViajeroFrecuente
+#from ViajeroF import ViajeroFrecuente
 
-def mostrarMenu():
+#Clase
+class ViajeroFrecuente:     
+    __num_viajero: 0
+    __dni = ""
+    __nombre = ""
+    __apellido = ""
+    __millas_acum = 0
+    #Constructor - Item a
+    def __init__(self, num_viajero, dni, nombre, apellido, millas_acum):
+        self.__num_viajero = num_viajero
+        self.__dni = dni
+        self.__nombre = nombre
+        self.__apellido = apellido
+        self.__millas_acum = millas_acum
+    def __str__(self) -> str:
+        return f"{self.__num_viajero, self.__dni, self.__nombre, self.__apellido, self.__millas_acum}"
+    def __repr__(self) -> str:
+        return f"{self.__num_viajero, self.__dni, self.__nombre, self.__apellido, self.__millas_acum}"
+    def get_numero(self):
+        return self.__num_viajero
+    #Item b
+    def cantidadTotaldeMillas(self):
+        return self.__millas_acum
+    #Item C
+    def acumularMillas(self, millas_recorridas):
+        return self.__millas_acum + millas_recorridas
+    #Item d
+    def canjearMillas(self, millas_Pcanjear):
+        if self.__millas_acum < millas_Pcanjear:
+            print("Número de millas erróneas, tiene que ingresar un numero igual o menor a {self.__millas_acum}")
+        else:
+            self.__millas_acum = self.__millas_acum - millas_Pcanjear
+            print("Canje exitoso, quedan {self.__millas_acum} para canjear")
+            return self.__millas_acum
+
+def Menu():
 	print("""
-        1.Consultar Cantidad de millas
-        2.Acumular millas
-        3.Canjear millas
-    """) 
+        1 - Consultar Cantidad de millas
+        2 - Acumular millas
+        3 - Canjear millas
+    """)     
 
 if __name__ == "__main__":
     listaViajeros = []
-    i = 0
-    archivo = open('viajeros.csv')
+    viajero = []
+    archivo = open('listaViajeros.csv')
     reader = csv.reader(archivo, delimiter = ";")
     for fila in reader:
         viajero = ViajeroFrecuente(fila[0], fila[1], fila[2], fila[3], fila[4])
         listaViajeros.append(viajero)
-
-    print(listaViajeros)
+    archivo.close()
     
+    #PUNTO 2
     
-    
-    archivo.close()        
+    Menu()
+    opc = int(input(""))
+    while opc != 0:
+        match opc:
+            case 1:
+                num_Vfrecuente = input("Ingrese un numero de viajero frecuente: ")
+                for persona in listaViajeros:
+                    if persona.get_numero() == num_Vfrecuente:
+                       print(f"Cantidad de millas acumuladas del viajero ingresado: {persona.cantidadTotaldeMillas()}")
+                break

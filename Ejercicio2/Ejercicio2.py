@@ -25,23 +25,24 @@ class ViajeroFrecuente:
     def cantidadTotaldeMillas(self):
         return self.__millas_acum
     #Item C
-    def acumularMillas(self, millas_recorridas):
-        return self.__millas_acum + millas_recorridas
+    def acumularMillas(self, millas_agregar):
+        self.__millas_acum = int(self.__millas_acum) + millas_agregar
+        return self.__millas_acum
     #Item d
     def canjearMillas(self, millas_Pcanjear):
-        if self.__millas_acum < millas_Pcanjear:
-            print("Número de millas erróneas, tiene que ingresar un numero igual o menor a {self.__millas_acum}")
+        if self.__millas_acum < int(millas_Pcanjear):
+            print(f"Número de millas erróneas, tiene que ingresar un numero igual o menor a {self.__millas_acum}")
         else:
-            self.__millas_acum = self.__millas_acum - millas_Pcanjear
-            print("Canje exitoso, quedan {self.__millas_acum} para canjear")
-            return self.__millas_acum
+            self.__millas_acum = self.__millas_acum - int(millas_Pcanjear)
+            print(f"Canje exitoso, quedan {self.__millas_acum} para canjear")
+            return int(self.__millas_acum)
 
 def Menu():
 	print("""
         1 - Consultar Cantidad de millas
         2 - Acumular millas
         3 - Canjear millas
-    """)     
+    """)
 
 if __name__ == "__main__":
     listaViajeros = []
@@ -54,14 +55,49 @@ if __name__ == "__main__":
     archivo.close()
     
     #PUNTO 2
-    
+    num_Vfrecuente = input("Ingrese un numero de viajero frecuente: ")
     Menu()
     opc = int(input(""))
     while opc != 0:
         match opc:
             case 1:
-                num_Vfrecuente = input("Ingrese un numero de viajero frecuente: ")
-                for persona in listaViajeros:
-                    if persona.get_numero() == num_Vfrecuente:
-                       print(f"Cantidad de millas acumuladas del viajero ingresado: {persona.cantidadTotaldeMillas()}")
+                i = 0
+                bandera = True
+                while ((i < len(listaViajeros)) and bandera):
+                    if listaViajeros[i].get_numero() == num_Vfrecuente:
+                        bandera = False
+                    i += 1
+                if i >= len(listaViajeros):
+                    print("No se encontró el viajero ingresado")
+                else:
+                    print(f"Cantidad de millas acumuladas del viajero ingresado: {listaViajeros[i-1].cantidadTotaldeMillas()}")
                 break
+            case 2:
+                i = 0
+                bandera = True
+                while ((i < len(listaViajeros)) and bandera):
+                    if listaViajeros[i].get_numero() == num_Vfrecuente:
+                        bandera = False
+                    i += 1
+                if i >= len(listaViajeros):
+                    print("No se encontró el viajero ingresado")
+                else:
+                    millasAagregar = int(input("Ingrese cantidad de millas a agregar: "))
+                    listaViajeros[i-1].acumularMillas(millasAagregar)
+                    print(f"Cantidad de millas actualizas: {listaViajeros[i-1].cantidadTotaldeMillas()}")                        
+                break
+            case 3:
+                i = 0
+                bandera = True
+                while ((i < len(listaViajeros)) and bandera):
+                    if listaViajeros[i].get_numero() == num_Vfrecuente:
+                        bandera = False
+                    i += 1
+                if i >= len(listaViajeros):
+                    print("No se encontró el viajero ingresado")
+                else:
+                    millasAcanjear = int(input("Ingrese cantidad de millas a canjear: "))
+                    listaViajeros[i-1].canjearMillas(millasAcanjear)                        
+                break
+            case default:
+                Menu()

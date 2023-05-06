@@ -1,4 +1,4 @@
-import csv
+import csv, re
 
 class email:                        #Item a
     __idCuenta = ""
@@ -17,6 +17,11 @@ class email:                        #Item a
     def modificarContra(self, contrasena):
         self.__contrasena = contrasena
         return self.__contrasena
+
+def crearCuenta(correos = "" , contraseña = ""):
+	datos = correos.split("@")
+	dom = datos[1].split(".")
+	return email(datos[0], dom[0], dom[1], contraseña)
     
 if __name__ == '__main__':
     """nombre = input("Ingrese su nombre: ")
@@ -41,7 +46,7 @@ if __name__ == '__main__':
     #PUNTO 4
     archivo = open('correo.csv')
     reader = csv.reader(archivo, delimiter=';')
-    correos=[]
+    correos = []
     email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$'
     for fila in reader:
         if re.search(email_regex,fila[0]):

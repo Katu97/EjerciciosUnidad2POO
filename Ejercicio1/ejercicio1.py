@@ -7,7 +7,7 @@ def crearCuenta(correos = "" , contraseña = ""):
 	return email(datos[0], dom[0], dom[1], contraseña)
     
 if __name__ == '__main__':
-    """nombre = input("Ingrese su nombre: ")
+    nombre = input("Ingrese su nombre: ")
     mail = input("Ingrese su email: ")
     email.__contrasena = input("Ingrese la contraseña: ")
     print(f"contraseña actual: "+email.__contrasena)
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     email.__idCuenta = datos[0]
     email.__dominio = dominio[0]
     email.__tipoDominio = dominio[1]
-    print(f"IdCuenta: "+email.__idCuenta+" - Dominio: "+email.__dominio+" - Tipo: "+email.__tipoDominio)"""
+    print(f"IdCuenta: "+email.__idCuenta+" - Dominio: "+email.__dominio+" - Tipo: "+email.__tipoDominio)
     
     #PUNTO 4
     archivo = open('correos.csv')

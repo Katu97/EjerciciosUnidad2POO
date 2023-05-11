@@ -9,7 +9,7 @@ class ViajeroFrecuente:
     __apellido = ""
     __millas_acum = 0
     #Constructor - Item a
-    def __init__(self, num_viajero: int, dni: int , nombre: str, apellido:str , millas_acum: float):
+    def __init__(self, num_viajero: int, dni: int , nombre: str, apellido:str , millas_acum: int):
         self.__num_viajero = num_viajero
         self.__dni = dni
         self.__nombre = nombre
@@ -29,7 +29,7 @@ class ViajeroFrecuente:
         self.__millas_acum = int(self.__millas_acum) + millas_agregar
         return self.__millas_acum
     #Item d
-    def canjearMillas(self, millas_Pcanjear):
+    def canjearMillas(self, millas_Pcanjear: int) -> int | None:
         if (self.__millas_acum < millas_Pcanjear):
             print(f"Número de millas erróneas, tiene que ingresar un numero igual o menor a {self.__millas_acum}")
         else:
@@ -101,3 +101,5 @@ if __name__ == "__main__":
                 break
             case default:
                 Menu()
+
+

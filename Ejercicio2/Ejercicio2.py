@@ -9,7 +9,7 @@ class ViajeroFrecuente:
     __apellido = ""
     __millas_acum = 0
     #Constructor - Item a
-    def __init__(self, num_viajero, dni, nombre, apellido, millas_acum):
+    def __init__(self, num_viajero: int, dni: int , nombre: str, apellido:str , millas_acum: float):
         self.__num_viajero = num_viajero
         self.__dni = dni
         self.__nombre = nombre
@@ -30,10 +30,10 @@ class ViajeroFrecuente:
         return self.__millas_acum
     #Item d
     def canjearMillas(self, millas_Pcanjear):
-        if self.__millas_acum < int(millas_Pcanjear):
+        if (self.__millas_acum < millas_Pcanjear):
             print(f"Número de millas erróneas, tiene que ingresar un numero igual o menor a {self.__millas_acum}")
         else:
-            self.__millas_acum = self.__millas_acum - int(millas_Pcanjear)
+            self.__millas_acum = self.__millas_acum - millas_Pcanjear
             print(f"Canje exitoso, quedan {self.__millas_acum} para canjear")
             return int(self.__millas_acum)
 
@@ -50,14 +50,14 @@ if __name__ == "__main__":
     archivo = open('listaViajeros.csv')
     reader = csv.reader(archivo, delimiter = ";")
     for fila in reader:
-        viajero = ViajeroFrecuente(fila[0], fila[1], fila[2], fila[3], fila[4])
+        viajero = ViajeroFrecuente(fila[0], fila[1], fila[2], fila[3], int(fila[4]))
         listaViajeros.append(viajero)
     archivo.close()
     
     #PUNTO 2
     num_Vfrecuente = input("Ingrese un numero de viajero frecuente: ")
     Menu()
-    opc = int(input(""))
+    opc = int(input("Ingrese opcion elegida: "))
     while opc != 0:
         match opc:
             case 1:

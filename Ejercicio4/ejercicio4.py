@@ -5,7 +5,7 @@ class Ventana:
     __x_vid: 50
     __y_vid: 50
     #Constructor
-    def __init__(self, titulo: str, x_vsi: float, y_vsi: float, x_vid: float, y_vid: float):
+    def __init__(self, titulo: str, x_vsi: float = 0, y_vsi: float = 0, x_vid: float = 50, y_vid: float = 50):
         self.__titulo = titulo
         self.__x_vsi = x_vsi
         self.__y_vsi = y_vsi
@@ -22,29 +22,29 @@ class Ventana:
     def ancho(self):
         return (self.__x_vid - self.__x_vsi)
     def mostrar(self):
-        return f"(X del vertice superior izquierdo = {self.__x_vsi}; Y del vertice superior izquiero = {self.__y_vsi}; X del vertice inferior derecho = {self.__x_vid}; Y del vertice inferior derecho = {self.__y_vid})"
-    def moverDerecha(self, numero):
+        print(f"X del vertice superior izquierdo = {self.__x_vsi}; Y del vertice superior izquiero = {self.__y_vsi}; X del vertice inferior derecho = {self.__x_vid}; Y del vertice inferior derecho = {self.__y_vid}")
+    def moverDerecha(self, numero = 0):
         x = self.__x_vid + numero
         if x < 500:
             self.__x_vid = x
             self.__x_vsi = self.__x_vsi + numero            
         else:
             print(f"No se puede mover {numero} pasos a la derecha")
-    def moverIzquierda(self, numero):
+    def moverIzquierda(self, numero = 0):
         x = self.__x_vsi - numero
         if x >= 0:
             self.__x_vsi = x
             self.__x_vid = self.__x_vid - numero
         else:
             print(f"No se puede mover {numero} pasos a la izquierda")
-    def bajar(self, numero):
+    def bajar(self, numero = 0):
         x = self.__y_vid + numero
         if x < 500:
             self.__y_vid = x
             self.__y_vsi = self.__y_vsi + numero            
         else:
             print(f"No se puede mover {numero} pasos hacia abajo")
-    def subir(self, numero):
+    def subir(self, numero = 0):
         x = self.__y_vsi - numero
         if x >= 0:
             self.__y_vsi = x

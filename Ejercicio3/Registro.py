@@ -7,8 +7,6 @@ class Registro:
         return {self.__temperatura, self.__presion, self.__humedad}
     def __repr__(self):
         return f"{self.__temperatura, self.__presion, self.__humedad}"
-    def mostrar_menor_mayor(self):
-        return 0
     def getTemperatura(self):
         return self.__temperatura
     def getPresion(self):

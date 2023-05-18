@@ -1,0 +1,29 @@
+class PlanAhorro:
+    __cuotas = 60
+    __CantCuotasMin = 10
+    def __init__(self, codigo: int, modelo: str, version: int, importe: float):
+        self.__codigo = codigo
+        self.__modelo = modelo
+        self.__version = version
+        self.__importe = importe
+    def __str__ (self):
+        return f"{self.__codigo, self.__modelo, self.__version}"
+    def getValor(self):
+        return self.__valor
+    def getCuotas(self):
+        return self.__cuotas
+    def getCod(self):
+        return self.__codigo
+    def getModelo(self):
+        return self.__modelo
+    def actualizaValor(self, importe):
+        self.__valor = importe
+    @classmethod
+    def getCantCuotas(cls):
+        return (cls.__CantCuotasMin)
+    @classmethod
+    def getCuotas(cls):
+        return (cls.__cuotas)
+    @classmethod
+    def modificaCantCuotas(cls,CuotasLicitas):
+        cls.__CantCuotasMin = CuotasLicitas
